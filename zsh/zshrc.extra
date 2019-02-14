@@ -1,0 +1,126 @@
+# global exports
+
+# temporary fix
+export LC_ALL=en_US.UTF-8
+
+export EDITOR=vim
+export TERM=xterm-256color
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LS_COLORS=$LS_COLORS:'di=0;33:'
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/sbin/::$GOPATH/bin
+
+# aliases
+alias vi='nvim'
+alias vim='nvim'
+
+alias crontab="VIM_CRONTAB=true crontab"
+alias k='kubectl'
+alias kgp='kubectl get pods'
+
+alias g='git'
+alias gs='git status'
+
+alias tf='terraform'
+alias tfv='terraform validate'
+alias tff='terraform fmt -recursive'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfaa='terraform apply -auto-approve'
+alias tfd='terraform destroy'
+
+alias expl0="ssh expl0it.d47zm3.me"
+
+# autocompletion
+
+source <(kubectl completion zsh)
+source <(kops completion zsh)
+source <(helm completion zsh )
+source <(stern --completion=zsh)
+
+# custom functions
+
+function tmux-start {
+  s_name="tmux-start"
+  s_exist=$( tmux ls 2>/dev/null | grep ${s_name} | wc -l )
+  if [[ ${s_exist} -eq 1 ]]; then
+    tmux -2 a -t ${s_name}
+  else
+    tmux -2 -f ~/.tmux.conf new -s ${s_name} -d
+    tmux rename-window 'home'
+    tmux -2 a -t ${s_name}
+  fi
+}
+
+function kube_ps {
+  source /usr/local/share/kube-ps1.sh
+  PROMPT='$(kube_ps1) '$PROMPT
+}
+
+function zsh_ps {
+  source ~/.zshrc
+}
+
+function openvpn {
+  config="${1}"
+  if [[ -z "${config}" ]]; then
+    echo "[error] needs config file as an argument"
+    exit 1
+  fi
+  sudo openvpn --config "${config}" --mute-replay-warnings &
+}
+
+function openconnect {
+  domain="${1}"
+  if [[ -z "${domain}" ]]; then
+    echo "[error] needs domain to connect to"
+    exit 1
+  fi
+  sudo openconnect "${domain}" --authgroup=VPN-SSL-GROUP
+}
+
+function sops_check {
+  for file in $( ls -R . )
+  do
+    if egrep -i -q "sops:|sops\"" ${file}; then
+      echo "[ok] file ${file} is encrypted"
+    else
+      echo "[error] file ${file} is not encrypted"
+    fi
+  done
+}
+
+function gcp
+{
+  message=${1}
+  if [[ -z "${message}" ]]
+  then
+    echo "[error] need commit message as an argument!"
+    return 1
+  fi
+
+  branch=$( git branch | grep \* | cut -d ' ' -f2 )
+  git add -A .
+  git commit -m "${message}"
+  git push origin ${branch}
+}
+
+function cheat
+{
+  /usr/bin/curl cht.sh/$(echo -- "$@"|$(which gsed) -e 's/[ ]/\n/g2; s/[ ]/\//g; s/\n/+/g')
+}
+
+autoload -U +X bashcompinit && bashcompinit
+ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/d47zm3/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/d47zm3/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/d47zm3/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d47zm3/google-cloud-sdk/completion.zsh.inc'; fi
+
+unsetopt correct_all

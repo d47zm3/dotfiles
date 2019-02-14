@@ -1,0 +1,6 @@
+# tests
+.dotfiles.log
+
+# neovim stuff
+tags
+.ropeproject

@@ -1,0 +1,122 @@
+# DenVIM
+
+Personally crafted config for Python/Go development mainly. Comes with Dockerfile to test configuration without cluttering "production" config.
+
+### VIM Tips
+
+```
+- d$ - delete from current position to the end of line
+- ctrl+v - start visual block select (v for standard visual select)
+  ...then press c for changing mode, content will be deleted, insert anything you want, press esc, all selected content will be replaced with new text
+- :r !ls - read and paste output of "ls" command into current buffer, :r other_file - same for text file
+- gf - go to file (cursor in on filename/path, press gf and it will open)
+- try using h,j,k,l to move cursor around, no don't have to move hands from homerow, left, up, down, right
+- w/W: go to the start of the next word/WORD
+- e/E: go to the end of the current word/WORD
+- b/B: go to the previous (before) word/WORD
+- WORD is not limited by ", ; and such", while word is
+- CTRL - d (down), u (up), f (forward, full), b (backwards full)
+- gg - top of file, G - bottom, {/} beginning/end of paragraph, % - matching bracket(!)
+- 50% - of file
+- H/L/M - highest line in current window, lowest and middle
+- \*/# will take take you to next/previous match of word under cursor
+- :Ex will open Explorer in current buffer
+- :Sex open current directory in horizontal view
+- :Vex open current directory in vertical view
+- :40vs +Ex open directory listing with width of 40 columns
+- while in netrw listing, press "i" to cycle between views, in vimrc set default style with  ```let g:netrw_liststyle = 3```
+- edit files remotely: vim scp://hostname//path/to/file
+- u/U - undo, CTRL + r/R - redo
+- :ea 2m - ealier 2 min, :lat 5h - later 5h (changes)
+- persistent undo!
+- powerless verbs
+- x - delete character under cursor (right), X - delete character under cursor (to the left)
+- r - replace character under cursor
+- s - delete character and enter insert mode
+- powerful verbs
+- (y)ank, (c)hange, (d)elete, (v)isually select
+- modifiers, they come before verbs
+- i - inner, a - around, NUM, t - search for something and stop before it, f - search for it and land on it, / - find a string
+- nouns - w/W - next word, or WORD, b/B - start of previous word, e/E - end of word, s - sentence, p - paragraph, t - tag, b - block, $ - end of line, 0, ^ - start of line
+- aw - a complete word, as - a complete sentence, iw - inner word, etc
+- ci" - change inside "", di" - delete inside ""
+- cit - change inside tag (HTML tags)
+- delete a line: dd                     
+- delete to the next word: dw
+- delete the whole current word: daw
+- delete up until the next comma (,) on the current line: dt,
+- delete to the end of the current word: de
+- delete to the end of next word: d2e
+- delete down a line (current and one below): dj
+- delete up until next closing parenthesis: dt)
+- delete up until the first search match for “rails”: d/rails
+- jump 3 words from cursor forward and delete next 2 words: 3wd2w
+- delete a word from cursor to beginning of a word, including the character under cursor: dvb
+- :s/bad/good/g - changes all words bad to good in the current line.
+- :6,11s/bad/good/g - makes the same change, but in lines 6 to 11, including 6 and 11. 
+- :%s/bad/good/g - makes the same change in entire file.
+- ~ - toggle case under cursor
+- ranges- 28: line 28, 1: first line, $: last line, %: all lines, 6,28 - lines 6 to 28 inclusive, .,$ - current line to the end, .,+4: current to current + 4 line, ?a?,/b: between patterns a and b
+- :[range] s[ubstitute]/pattern/string/[flags] [count]
+- c - to confirm each substitution
+- g - to replace all occurrences in the line
+- i - ignore case for the pattern
+- I - don’t ignore case for the pattern
+- replace whole worlds - :s/\<is\>/was/g
+- logical or - :s/\(awesome\|good\)/great/g
+- :vimgrep warning *.md
+- recursive: :vimgrep error **/*.log
+- by default, it will go to first match, :cn - next match, :cN - previous match, :clist - view all matches, :cc number - jump to specific number from :clist
+- :match ErrorMsg (WarningMsg|ModeMsg|MoreMsg) /pattern/
+- :[range]g/pattern/cmd - global command
+- :g/deleteme/d - delete pattern delete
+- :g!/important/d - delete all lines that do not have pattern
+- :g/^\s*$/d - delete empty lines
+- :g/pattern/d_ - use blackhole register for faster delete
+- :g/pattern/normal @a - run macro from a registry on pattern
+- reverse lines: :g/^/m0
+- there are many registers, to store data in, unamed "", ten numbered "0 to "9, small delete "-...
+- copy to "a ("ayy and paste "ap, same for "b etc)
+- using mapping, to switch between buffers, CTRL + J, CTRL + K
+- :sp[lit] - horizontal split
+- :vs[plit] - vertical split
+- :20sp file - specify size
+- resize windows: CTRL+W +/- < > = (equally)
+- moving windows around with CTRL+W r/R/H/J
+- save your session: :mksession ~/session.vim, vim -S ~/session.vim
+- macros, they use registers, start for example with qa, A to move to the end of line, add something, press q to stop recording, go to next line, press @a to execute same macro on this line
+- repeat last macro with @@, repeat multiple times with 10@@
+- use lazydraw when executing over many many lines
+- execute over many lines - :1,4normal @a (register with macro), on all lines - :%norm @m, on all matching lines - :g/pattern/norm @o
+- gv - re-select last visual selection
+- V - select whole line
+- during visual selection, in order to move cursor to the other side of visual selection, press o
+- zfap to fold text, specify mode etc. in vimrc
+- :execute "echom 'Hello World!'" - to evalute string as Vim command
+- :argdo and bufdo - vim args1 args2 and then open :e args3 - args list will have only first two, while buflist all three
+- :normal gg - execute gg in normal mode (jump to start), :normal! gg - skip mapping if any
+- for each buffer, execute save - :bufdo wq (or :wqa)
+- :bufdo exe ":normal Gp" | update - for each buffer execute "G jump to the end, p for paste", update buffers (dumps to disk)
+- replace word in all files in current git branch - :args `git grep -l Bad`, this will end up as a file list that will be put into args, now for each found file - :argdo %s/Bad/Good/gc | update
+- default leader key is \, but it's good to map it to Space or ;
+- CTRL+x CTRL+O for autocompletion
+- using templates, create new directory ~/.vim/templates and insert in config ```:autocmd BufNewFile *.html 0r ~/.vim/templates/html.tpl```
+- @: to repeat last Ex command
+- CTRL + r then 0 to paste yanked text in insert mode
+- in insert mode, CTRL + w - delete one word, CTRL + h - delete one char (like backspace), CTRL + u (whole line, until start)
+- in normal mode, paste nth line into current line without yank, :20co. or relative :-5t.
+- move line 6 to line 28 - :6m28
+- delete lines: 5,10d
+- while in normal mode, press R and start typing to replace in-place content
+- %normal di' - delete everything inside '' on all (%) lines
+- generate numbered lists: :for i in range(1,10) | put='hey number '.i | endfor
+- when cursor is on number, press CTRL+a to increse number or CTRL+x to decrease, prefix with amount to increase/decrease 4CTRL+a, WORKS on visually selected numbers
+- num[0], num[0], ... visla select 0, press g and CTRL+a to 1,2,3,4...
+- D to delete line
+- new 9 Enters? 9i<Enter><Esc>
+- execute multiple commands:  %s/Atom/Vim/c | %s/bad/good/c | %s/slow/fast/c
+- open last edited file, Ctrl+o+o
+- inversion selection, delete all lines not containing 127.0.0.1, :v/127.0.0.1/d
+- indent whole file, gg=G
+- go to next tab - gt, previous - gT
+```
