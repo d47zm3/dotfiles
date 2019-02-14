@@ -1,0 +1,48 @@
+# global exports
+
+export EDITOR=vim
+export TERM=xterm-256color
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LS_COLORS=$LS_COLORS:'di=0;33:'
+
+# aliases
+
+alias crontab="VIM_CRONTAB=true crontab"
+alias kb='kubectl'
+alias gcp="git add -A . && git commit -m 'update' && git push origin master"
+alias expl0="ssh expl0it.d47zm3.me"
+
+# autocompletion
+
+source <(kubectl completion zsh)
+source <(kops completion zsh)
+source <(helm completion zsh)
+source <(stern --completion=zsh)
+
+# custom functions
+
+function tmux-start {
+s_name="tmux-start"
+s_exist=$( tmux ls | grep ${s_name} | wc -l )
+	if [[ ${s_exist} -eq 1 ]]; then
+		tmux -2 a -t ${s_name} 
+	else
+		tmux -2 -f ~/.tmux.conf new -s ${s_name} -d
+		tmux rename-window 'home'
+		tmux -2 a -t ${s_name}
+	fi
+}
+
+# zsh bashcompinit
+
+autoload -U +X bashcompinit && bashcompinit
+ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+# fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# stuff that should not be in public
+
+source ~/.zshrc.private
