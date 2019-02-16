@@ -79,10 +79,12 @@ function brew_apps
                 git-extras \
                 fzf \
                 tmux \
+                openvpn \
                 gnupg \
                 pinentry-mac \
                 shellcheck \
                 gnu-sed \
+                docker \
                 bat >> .dotfiles.log 2>&1
     if [[ ${?} -ne 0 ]]
     then
@@ -169,6 +171,10 @@ function customs
   then
     cp $( pwd )/bin/cheat /usr/local/bin/
   fi
+
+  sudo brew services start openvpn
+
+  git -C "$(brew --repo homebrew/core)" fetch --unshallow
 }
 
 function gpg_setup
