@@ -189,6 +189,10 @@ function git_setup
   git config --global user.signingkey DD1D600D4228ED66 
   git config --global commit.gpgsign true 
   git config --global tag.forceSignAnnotated true
+  rm -f ~/.gitignore_global
+  ln -s $( pwd )/gitignore ~/.gitignore_global
+  git config --global core.excludesfile ~/.gitignore_global
+  git config --list
 }
 
 function ctf_tools
@@ -257,8 +261,8 @@ decho "setting up system..."
 #brew_apps
 #brew_cask_apps
 #ctf_tools
-dotfiles
-customs
-#git_setup
+#dotfiles
+#customs
+git_setup
 #macos_settings
 #cleanup
