@@ -34,6 +34,11 @@ s_exist=$( tmux ls | grep ${s_name} | wc -l )
 	fi
 }
 
+function kube_ps {
+  source /usr/local/share/kube-ps1.sh
+  PROMPT='$(kube_ps1)'$PROMPT
+}
+
 # zsh bashcompinit
 
 autoload -U +X bashcompinit && bashcompinit

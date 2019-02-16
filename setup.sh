@@ -43,6 +43,7 @@ function brew_apps
                 vim  \
                 kops \
                 kubernetes-helm \
+                kube-ps1 \
                 wget \
                 git \
                 kubectx \
@@ -256,9 +257,9 @@ function dotfiles
 
 echo "[~] dotfiles"
 decho "setting up system..."
-#brew_check
+brew_check
 #brew_cask_base
-#brew_apps
+brew_apps
 #brew_cask_apps
 #ctf_tools
 #dotfiles
