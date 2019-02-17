@@ -84,6 +84,7 @@ function brew_apps
                 pinentry-mac \
                 shellcheck \
                 gnu-sed \
+                minisign \
                 docker \
                 bat >> .dotfiles.log 2>&1
     if [[ ${?} -ne 0 ]]
@@ -175,6 +176,13 @@ function customs
   sudo brew services start openvpn
 
   git -C "$(brew --repo homebrew/core)" fetch --unshallow
+
+  decho "hardening system (mOSL)..."
+  cd /tmp/
+  git clone https://github.com/0xmachos/mOSL.git
+  cd mOSL
+  /tmp/mOSL/Lockdown audit
+  decho "audit done, after setup run $( pwd)/Lockdown fix (remember to give full disk access to terminal app!"
 }
 
 function gpg_setup
