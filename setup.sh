@@ -85,6 +85,7 @@ function brew_apps
                 shellcheck \
                 gnu-sed \
                 minisign \
+                hugo \
                 docker \
                 bat >> .dotfiles.log 2>&1
     if [[ ${?} -ne 0 ]]
@@ -183,6 +184,14 @@ function customs
   cd mOSL
   /tmp/mOSL/Lockdown audit
   decho "audit done, after setup run $( pwd)/Lockdown fix (remember to give full disk access to terminal app!"
+
+  if ! which -s metasploit
+  then
+    decho "installing metasploit..."
+    curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+    chmod 755 msfinstall && \
+    ./msfinstall
+  fi
 }
 
 function gpg_setup

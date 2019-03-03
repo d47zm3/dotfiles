@@ -21,10 +21,4 @@ vcs_status() {
     fi
 }
 
-#source /Users/d47zm3/.zsh/kube-ps1.sh
 PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)»%b '
-#PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)»%b $(kube_ps1) '
-#PROMPT="$(kube_ps1) $PROMPT"
-# PROMPT='%* %2~ [~d47zm3@%{$fg[red]%}w0rk%{$reset_color%}~] $(vcs_status)»%b '
-
-# PROMPT='%2~ $(vcs_status)»%b '
