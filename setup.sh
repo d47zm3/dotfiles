@@ -87,6 +87,7 @@ function brew_apps
                 minisign \
                 hugo \
                 docker \
+                dep \
                 bat >> .dotfiles.log 2>&1
     if [[ ${?} -ne 0 ]]
     then

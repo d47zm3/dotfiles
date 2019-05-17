@@ -6,11 +6,17 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LS_COLORS=$LS_COLORS:'di=0;33:'
 export PATH=$PATH:/usr/local/sbin/:/opt/metasploit-framework/bin
+export GOPATH=$HOME/Go
 
 # aliases
 
 alias crontab="VIM_CRONTAB=true crontab"
-alias kb='kubectl'
+alias k='kubectl'
+alias kgp='kubectl get pods'
+
+alias g='git'
+alias gs='git status'
+
 alias gcp="git add -A . && git commit -m 'update' && git push origin master"
 alias expl0="ssh expl0it.d47zm3.me"
 
@@ -18,7 +24,7 @@ alias expl0="ssh expl0it.d47zm3.me"
 
 source <(kubectl completion zsh)
 source <(kops completion zsh)
-source <(helm completion zsh)
+source <(helm completion zsh | sed -E 's/\["(.+)"\]/\[\1\]/g' )
 source <(stern --completion=zsh)
 
 # custom functions
@@ -37,12 +43,27 @@ s_exist=$( tmux ls | grep ${s_name} | wc -l )
 
 function kube_ps {
   source /usr/local/share/kube-ps1.sh
-  PROMPT='$(kube_ps1)' $PROMPT
+  PROMPT='$(kube_ps1) '$PROMPT
+}
+
+function zsh_ps {
+  PROMPT="%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)»%b "
 }
 
 function ovpn {
   config=${1}
   sudo openvpn --config ${config} --mute-replay-warnings &
+}
+
+function sops_check {
+  for file in $( ls . )
+  do
+    if egrep -i -q "sops:|sops\"" ${file}; then
+      echo "[ok] file ${file} is encrypted"
+    else
+      echo "[error] file ${file} is not encrypted"
+    fi
+  done
 }
 
 # zsh bashcompinit
