@@ -196,6 +196,11 @@ function customs
 
   decho "adding vundle to vim..."
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+  decho "installing all vim plugins..."
+  vim +PluginInstall +qall
+
+  decho "tip: run ':GoInstallBinaries' inside vim to get go binaries..."
 }
 
 function gpg_setup
