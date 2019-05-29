@@ -193,6 +193,9 @@ function customs
     chmod 755 msfinstall && \
     ./msfinstall
   fi
+
+  decho "adding vundle to vim..."
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
 
 function gpg_setup
@@ -282,12 +285,12 @@ function dotfiles
 echo "[~] dotfiles"
 decho "setting up system..."
 brew_check
-#brew_cask_base
+brew_cask_base
 brew_apps
-#brew_cask_apps
-#ctf_tools
-#dotfiles
-#customs
+brew_cask_apps
+ctf_tools
+dotfiles
+customs
 git_setup
-#macos_settings
-#cleanup
+macos_settings
+cleanup
