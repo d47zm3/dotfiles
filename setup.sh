@@ -147,7 +147,6 @@ install_fonts() {
 }
 
 setup_others() {
-  mkdir -p ~/Projects/{Personal,Work}
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
   chsh -s /bin/zsh

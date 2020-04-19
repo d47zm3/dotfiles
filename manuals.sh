@@ -25,4 +25,9 @@ brew cask install virtualbox vmware-fusion
 vagrant plugin install vagrant-vmware-desktop
 vagrant plugin license vagrant-vmware-desktop "$HOME/Dropbox/Miscellanous/Vagrant-VMWare-Desktop/license.lic"
 
+mkdir -p "$HOME/Projects/"
+
+ln -s "$HOME/Dropbox/Projects/Personal" Personal
+ln -s "$HOME/Dropbox/Projects/Work" Personal
+
 rm -f "${temporary_dir}"
