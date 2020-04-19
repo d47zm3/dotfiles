@@ -9,25 +9,50 @@ decho() {
   echo "[$( date +'%H:%M:%S' )] ${string}"
 }
 
-if [ ! -e "${vagrant_vmware_license}" ] || [ ! -e "${keys}" ]; then
-  decho "Dropbox Not Synced!"
-  exit 1
-fi
+check_sync_status() {
+  if [ ! -e "${vagrant_vmware_license}" ] || [ ! -e "${keys}" ]; then
+    decho "Dropbox Not Synced!"
+    exit 1
+  fi
+}
 
-decho "unpack keys..."
-mkdir -p "${temporary_dir}"
-cp "${keys}" "${temporary_dir}"
-unzip -q "${temporary_dir}/$(basename ${keys})"
+setup_keys() {
+  decho "setup keys..."
+  mkdir -p "${temporary_dir}"
+  cp "${keys}" "${temporary_dir}"
+  unzip -q "${temporary_dir}"/"$(basename "${keys}")"
+  cp "${temporary_dir}/id_rsa*" "$HOME/.ssh/"
+  gpg --import "${temporary_dir}/gpg.key"
+  rm -f "${temporary_dir}"
+}
 
-decho "install vmware plugin license"
+install_virtualbox() {
+  brew cask install virtualbox
+  decho "allow oracle extension in system settings..."
+  read -s -n -r 1
+}
 
-brew cask install virtualbox vmware-fusion
-vagrant plugin install vagrant-vmware-desktop
-vagrant plugin license vagrant-vmware-desktop "$HOME/Dropbox/Miscellanous/Vagrant-VMWare-Desktop/license.lic"
+install_vmware_fusion() {
+  decho "install vmware plugin license"
+  brew cask install vmware-fusion
+  vagrant plugin install vagrant-vmware-desktop
+  vagrant plugin license vagrant-vmware-desktop "$HOME/Dropbox/Miscellanous/Vagrant-VMWare-Desktop/license.lic"
+}
 
-mkdir -p "$HOME/Projects/"
+setup_dirs() {
+  mkdir -p "$HOME/Projects/"
+  cd "$HOME/Projects" || exit
+  ln -s "$HOME/Dropbox/Projects/Personal" Personal
+  ln -s "$HOME/Dropbox/Projects/Work" Personal
+  ln -s "$HOME/go" Go
+}
 
-ln -s "$HOME/Dropbox/Projects/Personal" Personal
-ln -s "$HOME/Dropbox/Projects/Work" Personal
+main() {
+  check_sync_status
+  setup_keys
+  setup_dirs
+  install_virtualbox
+  install_vmware_fusion
+}
 
-rm -f "${temporary_dir}"
+main "${@}"
