@@ -114,9 +114,9 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Molokai Colorscheme
 Plug 'fatih/molokai'
+Plug 'joshdick/onedark.vim'
 
 " Go
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'fatih/vim-go'
 
 " Vim Polyglot - Collection Of Language Packs
@@ -211,12 +211,9 @@ let g:netrw_winsize = 10
 "" Set Colorscheme
 set t_Co=256
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
 let g:rehash256 = 1
 set termguicolors
-colorscheme molokai
-set background=dark
+colorscheme onedark
 " Security
 set modelines=0
 " Show Number Lines
