@@ -7,7 +7,7 @@ set -o pipefail
 readonly script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-brew_apps=( "vault" "sops" "nvim" "kops" "cfssl" "kubernetes-helm" "kube-ps1" "wget" "git" "kubectx" "htop" "jq" "tnftp" "tnftpd" "telnet" "telnetd" "npm" "nodejs" "watch" "awscli" "coreutils" "gpg" "p7zip" "mysql" "stern" "go" "ntfs-3g" "tree" "ansible" "ansifilter" "terraform" "kubectl" "nmap" "geoip" "bash-completion" "git-crypt" "speedtest_cli" "zsh" "zsh-completions" "httpie" "git-extras" "fzf" "tmux" "openvpn" "gnupg" "pinentry-mac" "shellcheck" "gnu-sed" "minisign" "hugo" "docker" "dep" "hadolint" "bat" "openconnect" "tmux-mem-cpu-load")
+brew_apps=( "vault" "sops" "nvim" "kops" "cfssl" "kubernetes-helm" "kube-ps1" "wget" "git" "kubectx" "htop" "jq" "tnftp" "tnftpd" "telnet" "telnetd" "npm" "nodejs" "watch" "awscli" "coreutils" "gpg" "p7zip" "mysql" "stern" "go" "ntfs-3g" "tree" "ansible" "ansifilter" "terraform" "kubectl" "nmap" "geoip" "bash-completion" "git-crypt" "speedtest_cli" "zsh" "zsh-completions" "httpie" "git-extras" "fzf" "tmux" "openvpn" "gnupg" "pinentry-mac" "shellcheck" "gnu-sed" "minisign" "hugo" "docker" "dep" "hadolint" "bat" "openconnect" "tmux-mem-cpu-load" "yamllint")
 brew_cask_apps=( "google-chrome" "firefox" "iterm2" "java" "spotify" "vlc" "dropbox" "visual-studio-code" "slack" "vagrant" "mattermost" "burp-suite" "1password" "nordvpn" "flux" "notion" "docker" "appgate-sdp-client" "discord")
 
 decho() {
