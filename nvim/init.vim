@@ -210,9 +210,8 @@ let g:netrw_winsize = 10
 " ===================
 "" Set Colorscheme
 set t_Co=256
-set background=dark
 let g:rehash256 = 1
-set termguicolors
+set background=dark
 colorscheme onedark
 " Security
 set modelines=0
