@@ -8,7 +8,7 @@ readonly script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 brew_apps=( "vault" "sops" "nvim" "kops" "cfssl" "kubernetes-helm" "kube-ps1" "wget" "git" "kubectx" "htop" "jq" "tnftp" "tnftpd" "telnet" "telnetd" "npm" "nodejs" "watch" "awscli" "coreutils" "gpg" "p7zip" "mysql" "stern" "go" "ntfs-3g" "tree" "ansible" "ansifilter" "terraform" "kubectl" "nmap" "geoip" "bash-completion" "git-crypt" "speedtest_cli" "zsh" "zsh-completions" "httpie" "git-extras" "fzf" "tmux" "openvpn" "gnupg" "pinentry-mac" "shellcheck" "gnu-sed" "minisign" "hugo" "docker" "dep" "hadolint" "bat" "openconnect" "tmux-mem-cpu-load" "yamllint")
-brew_cask_apps=( "google-chrome" "firefox" "iterm2" "java" "spotify" "vlc" "dropbox" "visual-studio-code" "slack" "vagrant" "mattermost" "burp-suite" "1password" "nordvpn" "flux" "notion" "docker" "appgate-sdp-client" "discord")
+brew_cask_apps=( "google-chrome" "firefox" "iterm2" "java" "spotify" "vlc" "visual-studio-code" "slack" "vagrant" "mattermost" "burp-suite" "1password" "nordvpn" "flux" "notion" "docker" "appgate-sdp-client" "discord")
 
 decho() {
   string=$1
@@ -212,10 +212,25 @@ cleanup() {
 
 dotfiles() {
   cd "${script_dir}" || exit
-  cp ./tmux/tmux.conf ~/.tmux.conf
-  cp ./zsh/zshrc ~/.zshrc
-  cp ./zsh/zshrc.extra ~/.zshrc.extra
-  cp ./zsh/minimal.zsh-theme ~/.oh-my-zsh/themes/minimal.zsh-theme
+  cp ~/.tmux.conf ~/.tmux.conf.orig.$( date +%s )
+  cp ~/.zshrc ~/.zshrc.orig.$( date +%s )
+  cp ~/.zshrc.extra ~/.zshrc.extra.orig.$( date +%s )
+  cp ~/.oh-my-zsh/themes/minimal.zsh-theme ~/.oh-my-zsh/themes/minimal.zsh-theme.orig.$( date +%s )
+  cp ~/.config/nvim/init.vim ~/.config/nvim/init.vim.$( date +%s )
+  cp ~/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json.$( date +%s )
+  rm -f ~/.tmux.conf
+  rm -f ~/.zshrc
+  rm -f ~/.zshrc.extra
+  rm -f ~/.oh-my-zsh/themes/minimal.zsh-theme
+  rm -f ~/.config/nvim/init.vim
+  rm -f ~/.config/nvim/coc-settings.json
+  ln -s "${script_dir}/tmux/tmux.conf" ~/.tmux.conf
+  ln -s "${script_dir}/zsh/zshrc" ~/.zshrc
+  ln -s "${script_dir}/zsh/zshrc.extra" ~/.zshrc.extra
+  ln -s "${script_dir}/zsh/minimal.zsh-theme" ~/.oh-my-zsh/themes/minimal.zsh-theme
+  ln -s "${script_dir}/nvim/init.vim"  ~/.config/nvim/init.vim
+  ln -s "${script_dir}/nvim/coc-settings.json"  ~/.config/nvim/coc-settings.json
+
   decho "remember to switch dotfiles to your git repository after completing setup!"
 }
 

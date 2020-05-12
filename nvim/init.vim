@@ -112,12 +112,12 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " Python Mode
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
-" Molokai Colorscheme
+" Colorschemes
 Plug 'fatih/molokai'
 Plug 'joshdick/onedark.vim'
 
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Vim Polyglot - Collection Of Language Packs
 Plug 'sheerun/vim-polyglot'
@@ -211,8 +211,8 @@ let g:netrw_winsize = 10
 "" Set Colorscheme
 set t_Co=256
 let g:rehash256 = 1
-set background=dark
 colorscheme onedark
+set background=dark
 " Security
 set modelines=0
 " Show Number Lines
@@ -407,11 +407,13 @@ let g:gutentags_file_list_command = {'markers': {'.git': 'git ls-files'}}
 let g:gutentags_exclude = ['*.go']
 
 " highlight python and self function
-autocmd BufEnter * syntax match Type /\v\.[a-zA-Z0-9_]+\ze(\[|\s|$|,|\]|\)|\.|:)/hs=s+1
-autocmd BufEnter * syntax match pythonFunction /\v[[:alnum:]_]+\ze(\s?\()/
-hi def link pythonFunction Function
-autocmd BufEnter * syn match Self "\(\W\|^\)\@<=self\(\.\)\@="
-highlight self ctermfg=239
+ "autocmd BufEnter * syntax match Type /\v\.[a-zA-Z0-9_]+\ze(\[|\s|$|,|\]|\)|\.|:)/hs=s+1
+" autocmd BufEnter * syntax match pythonFunction /\v[[:alnum:]_]+\ze(\s?\()/
+" hi def link pythonFunction Function
+"autocmd BufEnter * syn match Self "\(\W\|^\)\@<=self\(\.\)\@="
+" highlight self ctermfg=239
+
+highlight Normal ctermbg=black
 
 " close preview windows after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -445,7 +447,8 @@ au filetype go inoremap <buffer> . .<C-x><C-o>
 "
 " " Airline Theme
 " let g:airline_theme='wombat'
-"
+let g:airline_theme='onedark'
+
 " " Run goimports along gofmt on each save
 " let g:go_fmt_command = "goimports"
 "
