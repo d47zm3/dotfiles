@@ -1,6 +1,6 @@
 MAKEFLAGS += --silent
 
-image_name = denvim:latest
+image_name = nvim:latest
 
 build:
 	if [ ! -z $$(docker images -q $(image_name)) ]; then docker rmi -f $(image_name); fi
