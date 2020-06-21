@@ -1,4 +1,6 @@
 {
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true,
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",

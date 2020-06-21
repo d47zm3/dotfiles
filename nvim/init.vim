@@ -154,9 +154,6 @@ Plug 'jiangmiao/auto-pairs'
 " Terraform
 Plug 'hashivim/vim-terraform'
 
-" DEV Icons
-Plug 'ryanoasis/vim-devicons'
-
 call plug#end()
 
 " ===============
