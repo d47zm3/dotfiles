@@ -15,3 +15,6 @@ chmod 700 "$HOME/.ssh"
 touch "$HOME/.ssh/id_rsa"
 chmod 600 "$HOME/.ssh/id_rsa"
 mkdir -p "$HOME/Projects/{Personal,Work}"
+
+vagrant plugin install vagrant-vmware-desktop
+decho "install license for vagrant: $ vagrant plugin license vagrant-vmware-desktop <license file>"

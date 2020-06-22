@@ -155,4 +155,4 @@ then
   decho "[error] post-brew cask install returned an error!"
 fi
 
-$(brew --prefix)/opt/fzf/install --all >> "${module_log_file}" 2>&1
+"$(brew --prefix)/opt/fzf/install" "--all" >> "${module_log_file}" 2>&1

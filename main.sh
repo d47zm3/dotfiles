@@ -27,7 +27,8 @@ sudo spctl --master-disable
 "modules/brew.sh" "${script_dir}"
 
 # follow with the rest
-for module in $( ls ./modules/*.sh | egrep -v "brew.sh|miscellaneous.sh" )
+# shellcheck disable=SC2010
+for module in $( ls ./modules/*.sh | grep -v -E "brew.sh|miscellaneous.sh" )
 do
   "${module}" "${script_dir}"
 done
@@ -36,6 +37,7 @@ done
 "modules/miscellaneous.sh" "${script_dir}"
 
 # install sane defaults
+# shellcheck disable=SC1090
 source "${script_dir}/macos/macos"
 
 decho "cleanup..."
