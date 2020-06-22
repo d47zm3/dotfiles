@@ -3,7 +3,7 @@
 # shellcheck disable=SC1091
 source /dev/stdin <<<"$( curl -sS https://raw.githubusercontent.com/d47zm3/bash-framework/master/bash.sh )"
 
-readonly script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+script_dir="${1}"
 readonly module_name="brew"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
@@ -101,6 +101,7 @@ brew_cask_apps=(
   "logitech-options"
   "logitech-unifying"
   "vmware-fusion"
+  "osxfuse"
   )
 
 brew_taps=(
@@ -153,3 +154,5 @@ if ! brew install "${post_brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] post-brew cask install returned an error!"
 fi
+
+$(brew --prefix)/opt/fzf/install --all >> "${module_log_file}" 2>&1
