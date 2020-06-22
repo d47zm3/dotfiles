@@ -36,10 +36,6 @@ done
 # miscellaneous module has to be last
 "modules/miscellaneous.sh" "${script_dir}"
 
-# install sane defaults
-# shellcheck disable=SC1090
-source "${script_dir}/macos/macos"
-
 decho "cleanup..."
 brew cleanup &> /dev/null
 sudo spctl --master-enable
