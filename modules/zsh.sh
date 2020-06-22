@@ -68,6 +68,7 @@ then
   done
 
   decho "installing oh-my-zsh theme..."
+  rm -f "$HOME/.oh-my-zsh/themes/minimal.zsh-theme"
   ln -s "${config_source_dir}/minimal.zsh-theme" "$HOME/.oh-my-zsh/themes/minimal.zsh-theme"
 else
   decho "skipping ${module_name} setup... binary not found"
