@@ -35,8 +35,7 @@ then
   done
 
   decho "installing plugins..."
-  nvim --headless +PlugInstall +qall >> "${module_log_file}" 2>&1
-  nvim --headless +GoUpdateBinaries +qall >> "${module_log_file}" 2>&1
+  nvim +PlugInstall +qall
 else
   decho "skipping ${module_name} setup... binary not found"
 fi
