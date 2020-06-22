@@ -27,10 +27,16 @@ sudo spctl --master-disable
 "modules/brew.sh" "${script_dir}"
 
 # follow with the rest
-for module in $( ls ./modules/*.sh | grep -v "brew.sh" )
+for module in $( ls ./modules/*.sh | egrep -v "brew.sh|miscellaneous.sh" )
 do
   "${module}" "${script_dir}"
 done
+
+# miscellaneous module has to be last
+"modules/miscellaneous.sh" "${script_dir}"
+
+# install sane defaults
+source "${script_dir}/macos/macos"
 
 decho "cleanup..."
 brew cleanup &> /dev/null
