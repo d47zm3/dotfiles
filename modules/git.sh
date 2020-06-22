@@ -25,7 +25,8 @@ then
   git config --global user.signingkey DD1D600D4228ED66 >> "${module_log_file}" 2>&1
   git config --global commit.gpgsign true >> "${module_log_file}" 2>&1
   git config --global tag.forceSignAnnotated true >> "${module_log_file}" 2>&1
-  git config --global core.excludesfile ~/.gitignore
+  git config --global core.excludesfile ~/.gitignore >> "${module_log_file}" 2>&1
+  git config --global pull.ff only >> "${module_log_file}" 2>&1
   git config --list >> "${module_log_file}" 2>&1
   decho "remember to add your private ssh key!"
 
