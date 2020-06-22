@@ -24,7 +24,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 sudo spctl --master-disable
 
 # brew module has to be executed first
-modules/brew.sh
+modules/brew.sh "${script_dir}"
 
 # follow with the rest
 for module in $( ls ./modules/*.sh | grep -v "brew.sh" )
