@@ -1,6 +1,11 @@
-# Testing
+# MacOS Catalina Edition Setup
 
-Install MacOS (preferably via VMWare Fusion) and setup remote login:
+Idempotent Setup For MacOS.
+
+### Testing
+
+- Install MacOS
+- Setup Remote Login
 
 ```bash
 sudo systemsetup -getremotelogin
