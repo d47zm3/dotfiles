@@ -18,6 +18,7 @@ if command_exists git
 then
   cd "${script_dir}" || exit
 
+# shellcheck disable=SC2129
   git config --global user.name "Damian Tykalowski" >> "${module_log_file}" 2>&1
   git config --global user.email d47zm3@gmail.com >> "${module_log_file}" 2>&1
   git config --global core.editor vim >> "${module_log_file}" 2>&1
@@ -31,6 +32,7 @@ then
   for config in "${config_files[@]}"
   do
     if [[ -e "${config_destination_dir}/${config}" ]]
+    then
       if ! cmp --silent "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
       then
         decho "source config ${config} and existing one differs, installing source one and backing up current one..."

@@ -27,6 +27,7 @@ then
   for config in "${config_files[@]}"
   do
     if [[ -e "${config_destination_dir}/${config}" ]]
+    then
       if ! cmp --silent "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
       then
         decho "source config ${config} and existing one differs, installing source one and backing up current one..."

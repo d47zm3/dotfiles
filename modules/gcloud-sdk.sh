@@ -14,7 +14,7 @@ if ! command_exists gcloud
 then
   decho "installing gcloud sdk..."
 
-  curl https://sdk.cloud.google.com > install.sh
+  curl -s https://sdk.cloud.google.com > install.sh
   if ! bash install.sh --disable-prompts >> "${module_log_file}" 2>&1
   then
     decho "[error] there was an error during gcloud sdk installation..."

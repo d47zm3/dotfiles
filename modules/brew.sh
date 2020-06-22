@@ -9,6 +9,10 @@ readonly module_log_file="${script_dir}/log/${module_name}.log"
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+post_brew_cask_apps=(
+  "ntfs-3g"
+  )
+
 brew_apps=(
   "vault"
   "sops"
@@ -37,7 +41,6 @@ brew_apps=(
   "mysql"
   "stern"
   "go"
-  "ntfs-3g"
   "tree"
   "ansible"
   "ansifilter"
@@ -143,4 +146,10 @@ decho "installing brew cask apps..."
 if ! brew cask install "${brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] brew cask install returned an error!"
+fi
+
+decho "installing post-brew cask apps..."
+if ! brew install "${post_brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
+then
+  decho "[error] post-brew cask install returned an error!"
 fi

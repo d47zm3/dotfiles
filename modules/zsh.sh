@@ -31,25 +31,30 @@ then
 
   decho "installing oh-my-zsh addons..."
 
-  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
+  then
     git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" >> "${module_log_file}" 2>&1
   fi
 
-  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search" ]; then
+  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search" ]
+  then
     git clone https://github.com/zsh-users/zsh-history-substring-search "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search" >> "${module_log_file}" 2>&1
   fi
 
-  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
+  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]
+  then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"  >> "${module_log_file}" 2>&1
   fi
 
-  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-completions" ]; then
+  if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-completions" ]
+  then
     git clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions" >> "${module_log_file}" 2>&1
   fi
 
   for config in "${config_files[@]}"
   do
     if [[ -e "${config_destination_dir}/${config}" ]]
+    then
       if ! cmp --silent "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
       then
         decho "source config ${config} and existing one differs, installing source one and backing up current one..."
