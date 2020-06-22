@@ -33,9 +33,11 @@ then
         decho "source config ${config} and existing one differs, installing source one and backing up current one..."
         cp "${config_destination_dir}/${config}" "${config_destination_dir}/${config}.$( date +%s )"
         rm -f "${config_destination_dir}/${config}"
+        ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
       fi
+    else
+      ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
     fi
-    ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
   done
 else
   decho "skipping ${module_name} setup... binary not found"

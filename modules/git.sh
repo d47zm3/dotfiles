@@ -39,8 +39,6 @@ then
         cp "${config_destination_dir}/${config}" "${config_destination_dir}/${config}.$( date +%s )"
         rm -f "${config_destination_dir}/${config}"
         ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
-      else
-        decho "${config} already installed..."
       fi
     else
       ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
