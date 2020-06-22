@@ -10,7 +10,7 @@ readonly module_log_file="${script_dir}/log/${module_name}.log"
 decho "initialising ${module_name} module..."
 true > "${module_log_file}"
 
-if ! command_exists gcloud
+if [[ ! -e " $HOME/google-cloud-sdk/bin/gcloud" ]]
 then
   decho "installing gcloud sdk..."
 
