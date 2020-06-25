@@ -19,7 +19,7 @@ then
   then
     decho "[error] there was an error during gcloud sdk installation..."
   fi
-  decho "to get credentials: gcloud auth application-default login"
+  decho "to get credentials: gcloud auth login"
 else
   decho "gcloud sdk already installed!"
 fi

@@ -14,6 +14,8 @@ post_brew_cask_apps=(
   )
 
 brew_apps=(
+  "pipenv"
+  "dockutil"
   "vault"
   "sops"
   "nektos/tap/act"
@@ -122,11 +124,18 @@ else
 fi
 
 decho "installing extra taps..."
-if ! brew tap "${brew_taps[@]}" >> "${module_log_file}" 2>&1
-then
-  decho "[error] brew tap returned an error!"
-fi
+for brew_tap in "${brew_taps[@]}"
+do
+  if ! brew tap | grep -q "${brew_tap}"
+  then
+    if ! brew tap "${brew_tap}" >> "${module_log_file}" 2>&1
+    then
+      decho "[error] brew tap ${brew_tap} returned an error!"
+    fi
+  fi
+done
 
+decho "updating brew modules..."
 if ! brew update >> "${module_log_file}" 2>&1
 then
   decho "[error] brew update returned an error!"

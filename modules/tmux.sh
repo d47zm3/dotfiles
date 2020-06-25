@@ -39,6 +39,12 @@ then
       ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
     fi
   done
+
+  if [[ ! -d "$HOME/.tmux/plugins/tmux-online-status" ]]
+  then
+    decho "installing tmux plugins"
+    "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh" >> "${module_log_file}" 2>&1
+  fi
 else
   decho "skipping ${module_name} setup... binary not found"
 fi
