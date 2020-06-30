@@ -76,6 +76,7 @@ brew_apps=(
   "terraformer"
   "mas"
   "geckodriver"
+  "syncthing"
 )
 
 brew_cask_apps=(
@@ -104,6 +105,7 @@ brew_cask_apps=(
   "logitech-unifying"
   "vmware-fusion"
   "osxfuse"
+  "wireshark"
   )
 
 brew_taps=(

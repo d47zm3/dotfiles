@@ -20,6 +20,7 @@ then
     decho "[error] there was an error during gcloud sdk installation..."
   fi
   decho "to get credentials: gcloud auth login"
+  decho "configure docker with: gcloud auth configure-docker"
 else
   decho "gcloud sdk already installed!"
 fi

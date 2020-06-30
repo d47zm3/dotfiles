@@ -16,8 +16,8 @@ mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 touch "$HOME/.ssh/id_rsa"
 chmod 600 "$HOME/.ssh/id_rsa"
-mkdir -p "$HOME/Projects/Personal"
-mkdir -p "$HOME/Projects/Work"
+mkdir -p "$HOME/Sync/Personal"
+mkdir -p "$HOME/Sync/Work"
 
 for vagrant_plugin in "${vagrant_plugins[@]}"
 do
@@ -60,6 +60,9 @@ then
 fi
 
 cp "${script_dir}/${module_name}/Profiles.json" "$HOME/Library/Application Support/iTerm2/DynamicProfiles/"
+
+decho "starting syncthing service..."
+brew services start syncthing >> "${module_log_file}" 2>&1
 
 decho "tweaking macos settings..."
 "${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
