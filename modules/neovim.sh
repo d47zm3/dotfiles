@@ -36,6 +36,8 @@ then
 
   decho "installing plugins..."
   nvim +PlugInstall +qall
+  # nvim +:CocInstall coc-python
+  # pip install jedi (?)
 else
   decho "skipping ${module_name} setup... binary not found"
 fi

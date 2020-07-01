@@ -107,7 +107,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Jedi VIM
-" Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 " Python Mode
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }

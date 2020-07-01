@@ -19,6 +19,27 @@ chmod 600 "$HOME/.ssh/id_rsa"
 mkdir -p "$HOME/Sync/Personal"
 mkdir -p "$HOME/Sync/Work"
 
+config_files=( ".rgignore" ".pylintrc")
+config_source_dir="${script_dir}/miscellaneous"
+config_destination_dir="${HOME}"
+
+cd "${script_dir}" || exit
+for config in "${config_files[@]}"
+do
+  if [[ -e "${config_destination_dir}/${config}" ]]
+  then
+    if ! cmp --silent "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
+    then
+      decho "source config ${config} and existing one differs, installing source one and backing up current one..."
+      cp "${config_destination_dir}/${config}" "${config_destination_dir}/${config}.$( date +%s )"
+      rm -f "${config_destination_dir}/${config}"
+      ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
+    fi
+  else
+    ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
+  fi
+done
+
 for vagrant_plugin in "${vagrant_plugins[@]}"
 do
   if ! vagrant plugin list | grep -q "${vagrant_plugin}"

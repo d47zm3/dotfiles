@@ -77,6 +77,7 @@ brew_apps=(
   "mas"
   "geckodriver"
   "syncthing"
+  "ripgrep"
 )
 
 brew_cask_apps=(

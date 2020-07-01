@@ -7,7 +7,7 @@ script_dir="${1}"
 readonly module_name="git"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-config_files=( ".gitignore" )
+config_files=( ".gitignore" ".gitconfig" )
 config_source_dir="${script_dir}/git"
 config_destination_dir="${HOME}"
 
@@ -17,17 +17,6 @@ true > "${module_log_file}"
 if command_exists git
 then
   cd "${script_dir}" || exit
-
-# shellcheck disable=SC2129
-  git config --global user.name "Damian Tykalowski" >> "${module_log_file}" 2>&1
-  git config --global user.email d47zm3@gmail.com >> "${module_log_file}" 2>&1
-  git config --global core.editor vim >> "${module_log_file}" 2>&1
-  git config --global user.signingkey DD1D600D4228ED66 >> "${module_log_file}" 2>&1
-  git config --global commit.gpgsign true >> "${module_log_file}" 2>&1
-  git config --global tag.forceSignAnnotated true >> "${module_log_file}" 2>&1
-  git config --global core.excludesfile ~/.gitignore >> "${module_log_file}" 2>&1
-  git config --global pull.ff only >> "${module_log_file}" 2>&1
-  git config --list >> "${module_log_file}" 2>&1
   decho "remember to add your private ssh key!"
 
   for config in "${config_files[@]}"

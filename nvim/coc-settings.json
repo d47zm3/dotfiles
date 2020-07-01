@@ -12,5 +12,6 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
-  }
+  },
+  "python.autoComplete.addBrackets": true
 }
