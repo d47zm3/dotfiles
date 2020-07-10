@@ -87,3 +87,5 @@ brew services start syncthing >> "${module_log_file}" 2>&1
 
 decho "tweaking macos settings..."
 "${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
+
+decho "set hostname using scutil: sudo scutil --set HostName <new host name>"

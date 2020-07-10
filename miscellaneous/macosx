@@ -2,6 +2,9 @@
 defaults write -globalDomain AppleInterfaceStyleSwitchesAutomatically -bool false
 defaults write "Apple Global Domain" "AppleInterfaceStyle" "Dark"
 
+# Disable Boot Sound
+sudo nvram StartupMute=%01
+
 # System Preferences > General > Click in the scrollbar to: Jump to the spot that's clicked
 defaults write -globalDomain AppleScrollerPagingBehavior -bool true
 
