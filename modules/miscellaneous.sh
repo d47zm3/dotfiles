@@ -16,8 +16,8 @@ mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 touch "$HOME/.ssh/id_rsa"
 chmod 600 "$HOME/.ssh/id_rsa"
-mkdir -p "$HOME/Sync/Personal"
-mkdir -p "$HOME/Sync/Work"
+mkdir -p "$HOME/Projects/Personal"
+mkdir -p "$HOME/Projects/Work"
 
 config_files=( ".rgignore" ".pylintrc")
 config_source_dir="${script_dir}/miscellaneous"
@@ -89,3 +89,4 @@ decho "tweaking macos settings..."
 "${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
 
 decho "set hostname using scutil: sudo scutil --set HostName <new host name>"
+decho "install terraform-lsp: https://github.com/juliosueiras/terraform-lsp"

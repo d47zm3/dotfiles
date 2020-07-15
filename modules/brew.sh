@@ -23,6 +23,7 @@ brew_apps=(
   "kops"
   "cfssl"
   "kubernetes-helm"
+  "helm@2"
   "kube-ps1"
   "wget"
   "git"
