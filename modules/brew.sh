@@ -79,6 +79,8 @@ brew_apps=(
   "geckodriver"
   "syncthing"
   "ripgrep"
+  "fluxctl"
+  "kubeseal"
 )
 
 brew_cask_apps=(
