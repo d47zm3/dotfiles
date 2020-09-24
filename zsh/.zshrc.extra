@@ -19,6 +19,7 @@ alias vim='nvim'
 alias crontab="VIM_CRONTAB=true crontab"
 alias k='kubectl'
 alias kgp='kubectl get pods'
+alias kge='kubectl get event --sort-by=lastTimestamp'
 
 alias g='git'
 alias gs='git status'
@@ -79,6 +80,11 @@ function openconnect {
     exit 1
   fi
   sudo openconnect "${domain}" --authgroup=VPN-SSL-GROUP
+}
+
+function kubectl_decode_secret {
+  secret_name="${1}"
+  kubectl get secret ${secret_name} -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 }
 
 function sops_check {

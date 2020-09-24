@@ -47,7 +47,7 @@ brew_apps=(
   "tree"
   "ansible"
   "ansifilter"
-  "terraform"
+  "tfenv"
   "kubectl"
   "nmap"
   "geoip"
@@ -81,6 +81,7 @@ brew_apps=(
   "ripgrep"
   "fluxctl"
   "kubeseal"
+  "java"
 )
 
 brew_cask_apps=(
@@ -88,7 +89,6 @@ brew_cask_apps=(
   "nordvpn"
   "firefox"
   "iterm2"
-  "java"
   "spotify"
   "vlc"
   "visual-studio-code"
