@@ -80,6 +80,7 @@ then
   rm -f "$HOME/Library/Application\ Support/iTerm2/DynamicProfiles/"
 fi
 
+mkdir -p "$HOME/Library/Application Support/iTerm2/DynamicProfiles/"
 cp "${script_dir}/${module_name}/Profiles.json" "$HOME/Library/Application Support/iTerm2/DynamicProfiles/"
 
 decho "starting syncthing service..."
