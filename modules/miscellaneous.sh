@@ -35,6 +35,13 @@ do
       rm -f "${config_destination_dir}/${config}"
       ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
     fi
+    link_target=$( greadlink -f "${config_destination_dir}/${config}" )
+    if [[ "${link_target}" != "${config_source_dir}/${config}" ]]
+    then
+      decho "existing link ${link_target} does not match current source one ${config_source_dir}/${config}, replacing..."
+      rm -f "${config_destination_dir}/${config}"
+      ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
+    fi
   else
     ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
   fi
@@ -90,4 +97,3 @@ decho "tweaking macos settings..."
 "${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
 
 decho "set hostname using scutil: sudo scutil --set HostName <new host name>"
-decho "install terraform-lsp: https://github.com/juliosueiras/terraform-lsp"

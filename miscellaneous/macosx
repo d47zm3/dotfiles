@@ -85,6 +85,9 @@ defaults write com.apple.menuextra.textinput ModeNameVisible -int 0
 # Disable Desktop Icons
 defaults write com.apple.finder CreateDesktop false
 
+# Enable Safari Debug Menu
+defaults write com.apple.Safari IncludeInternalDebugMenu 1
+
 # Set Desired Icons
 defaults write com.apple.systemuiserver menuExtras -array \
     "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
@@ -96,3 +99,15 @@ defaults write com.apple.systemuiserver menuExtras -array \
 for app in "Dock" "Finder"; do
   killall "${app}" > /dev/null 2>&1
 done
+
+curl -O https://gist.githubusercontent.com/tombigel/d503800a282fcadbee14b537735d202c/raw/ed73cacf82906fdde59976a0c8248cce8b44f906/limit.maxfiles.plist
+curl -O https://gist.githubusercontent.com/tombigel/d503800a282fcadbee14b537735d202c/raw/ed73cacf82906fdde59976a0c8248cce8b44f906/limit.maxproc.plist
+
+sudo mv limit.maxfiles.plist /Library/LaunchDaemons
+sudo mv limit.maxproc.plist /Library/LaunchDaemons
+
+sudo chown root:wheel /Library/LaunchDaemons/limit.maxfiles.plist
+sudo chown root:wheel /Library/LaunchDaemons/limit.maxproc.plist
+
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxproc.plist

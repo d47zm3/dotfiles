@@ -14,6 +14,7 @@ post_brew_cask_apps=(
   )
 
 brew_apps=(
+  "yarn"
   "pipenv"
   "dockutil"
   "vault"

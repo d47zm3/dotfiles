@@ -30,6 +30,13 @@ then
         rm -f "${config_destination_dir}/${config}"
         ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
       fi
+      link_target=$( greadlink -f "${config_destination_dir}/${config}" )
+      if [[ "${link_target}" != "${config_source_dir}/${config}" ]]
+      then
+        decho "existing link ${link_target} does not match current source one ${config_source_dir}/${config}, replacing..."
+        rm -f "${config_destination_dir}/${config}"
+        ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
+      fi
     else
       ln -s "${config_source_dir}/${config}" "${config_destination_dir}/${config}"
     fi

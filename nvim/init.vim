@@ -104,7 +104,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Conqueror Of Completion
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Jedi VIM
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -323,9 +323,6 @@ let g:pymode_lint_on_fly = 1
 let g:pymode_rope = 1
 let g:pymode_rope_autoimport=1
 let g:pymode_indent = 1
-
-
-
 
 " How can I open a NERDTree automatically when vim starts up if no files were specified?
 autocmd StdinReadPre * let s:std_in=1

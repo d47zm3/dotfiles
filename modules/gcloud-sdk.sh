@@ -21,6 +21,7 @@ then
   fi
   decho "to get credentials: gcloud auth login"
   decho "configure docker with: gcloud auth configure-docker"
+  decho "also: gcloud auth application-default"
 else
   decho "gcloud sdk already installed!"
 fi
