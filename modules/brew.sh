@@ -102,7 +102,6 @@ brew_cask_apps=(
   "flux"
   "notion"
   "docker"
-  "appgate-sdp-client"
   "discord"
   "postman"
   "chromedriver"

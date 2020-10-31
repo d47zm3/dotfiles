@@ -9,7 +9,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LS_COLORS=$LS_COLORS:'di=0;33:'
 export GOPATH=$HOME/Projects/Personal/go
-export PATH="/usr/local/opt/helm@2/bin:$PATH:/usr/local/sbin/:$GOPATH/bin"
+export PATH="$PATH:/usr/local/sbin/:$GOPATH/bin"
 export VAGRANT_VMWARE_CLONE_DIRECTORY="/Users/d47zm3/Virtual Machines.localized"
 
 # aliases
@@ -32,7 +32,7 @@ alias tfa='terraform apply'
 alias tfaa='terraform apply -auto-approve'
 alias tfd='terraform destroy'
 
-alias expl0="ssh expl0it.d47zm3.me"
+alias expl0="ssh -p 2879 expl0it.d47zm3.me"
 
 # autocompletion
 
@@ -40,6 +40,12 @@ source <(kubectl completion zsh)
 source <(kops completion zsh)
 source <(helm completion zsh )
 source <(stern --completion=zsh)
+
+# pyenv
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # custom functions
 
