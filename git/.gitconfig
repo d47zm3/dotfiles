@@ -42,4 +42,6 @@
 [mergetool "vimdiff"]
 	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	prompt = false
-	keepBackup = false
+  keepBackup = false
+[alias]
+  set-upstream = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)

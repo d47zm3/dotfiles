@@ -10,6 +10,7 @@ export LC_ALL=en_US.UTF-8
 export LS_COLORS=$LS_COLORS:'di=0;33:'
 export GOPATH=$HOME/Projects/Personal/go
 export PATH="$PATH:/usr/local/sbin/:$GOPATH/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export VAGRANT_VMWARE_CLONE_DIRECTORY="/Users/d47zm3/Virtual Machines.localized"
 
 # aliases
@@ -33,6 +34,7 @@ alias tfaa='terraform apply -auto-approve'
 alias tfd='terraform destroy'
 
 alias expl0="ssh -p 2879 expl0it.d47zm3.me"
+alias basement="ssh basement.d47zm3.me"
 
 # autocompletion
 

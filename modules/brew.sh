@@ -15,6 +15,7 @@ post_brew_cask_apps=(
 
 brew_apps=(
   "yarn"
+  "istioctl"
   "pipenv"
   "dockutil"
   "vault"
@@ -82,6 +83,7 @@ brew_apps=(
   "fluxctl"
   "kubeseal"
   "java"
+  "pyenv"
 )
 
 brew_cask_apps=(
@@ -115,6 +117,10 @@ brew_taps=(
   "homebrew/cask-drivers"
 )
 
+brew_custom_taps=(
+  "khanhas/tap/spicetify-cli"
+  )
+
 decho "initialising ${module_name} module..."
 
 mkdir -p "${script_dir}/log"
@@ -137,6 +143,15 @@ do
     then
       decho "[error] brew tap ${brew_tap} returned an error!"
     fi
+  fi
+done
+
+decho "installing custom taps..."
+for brew_tap in "${brew_taps[@]}"
+do
+  if ! brew install "${brew_tap}" >> "${module_log_file}" 2>&1
+  then
+    decho "[error] brew install ${brew_tap} returned an error!"
   fi
 done
 
