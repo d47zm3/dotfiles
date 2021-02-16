@@ -84,9 +84,6 @@ brew_apps=(
   "kubeseal"
   "java"
   "pyenv"
-)
-
-brew_cask_apps=(
   "google-chrome"
   "nordvpn"
   "firefox"
@@ -111,15 +108,12 @@ brew_cask_apps=(
   "vmware-fusion"
   "osxfuse"
   "wireshark"
+  "jsonlint"
   )
 
 brew_taps=(
   "homebrew/cask-drivers"
 )
-
-brew_custom_taps=(
-  "khanhas/tap/spicetify-cli"
-  )
 
 decho "initialising ${module_name} module..."
 
@@ -170,12 +164,6 @@ decho "installing brew utils..."
 if ! brew install "${brew_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] brew install returned an error!"
-fi
-
-decho "installing brew cask apps..."
-if ! brew cask install "${brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
-then
-  decho "[error] brew cask install returned an error!"
 fi
 
 decho "installing post-brew cask apps..."

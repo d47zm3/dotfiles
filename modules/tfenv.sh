@@ -7,7 +7,7 @@ script_dir="${1}"
 readonly module_name="tfenv"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-terraform_versions=( "0.12.29" )
+terraform_versions=( "0.13.6" )
 
 decho "initialising ${module_name} module..."
 true > "${module_log_file}"

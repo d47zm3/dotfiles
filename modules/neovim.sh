@@ -44,7 +44,6 @@ then
   decho "installing plugins..."
   python3 -m pip install jedi pylint
   nvim +PlugInstall +qall
-  nvim +"CocInstall coc-python"
 else
   decho "skipping ${module_name} setup... binary not found"
 fi
