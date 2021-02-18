@@ -159,6 +159,8 @@ then
   decho "[error] brew upgrade returned an error!"
 fi
 
+decho "installing brew pre-utils..."
+brew install --cask osxfuse >> "${module_log_file}" 2>&1
 decho "installing brew utils..."
 if ! brew install "${brew_apps[@]}" >> "${module_log_file}" 2>&1
 then
