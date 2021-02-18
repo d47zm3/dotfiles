@@ -144,6 +144,8 @@ if ! command_exists brew
 then
   decho "installing brew..."
   CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" >> "${module_log_file}" 2>&1
+  decho "tap brew cask drivers"
+  brew tap homebrew/cask-drivers
 else
   decho "brew already installed!"
 fi
