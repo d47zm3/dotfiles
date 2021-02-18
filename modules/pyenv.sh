@@ -7,7 +7,7 @@ script_dir="${1}"
 readonly module_name="pyenv"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-python_version=( "3.8.7" )
+python_versions=( "3.8.7" )
 default_version=( "3.8.7" )
 
 decho "initialising ${module_name} module..."

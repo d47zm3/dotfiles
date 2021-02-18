@@ -17,7 +17,6 @@ true > "${module_log_file}"
 if command_exists git
 then
   cd "${script_dir}" || exit
-  decho "remember to add your private ssh key!"
 
   for config in "${config_files[@]}"
   do

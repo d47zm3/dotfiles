@@ -23,7 +23,6 @@ then
   # workaround... curl is broken
   CURL_SSL_BACKEND=secure-transport curl -s https://keybase.io/d47zm3/pgp_keys.asc | gpg --import >> "${module_log_file}" 2>&1
   gpg --list-secret-keys --keyid-format LONG >> "${module_log_file}" 2>&1
-  decho "remember to add your private gpg key!"
 
   for config in "${config_files[@]}"
   do
