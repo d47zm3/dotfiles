@@ -122,7 +122,7 @@ decho "initialising ${module_name} module..."
 mkdir -p "${script_dir}/log"
 true > "${module_log_file}"
 
-if ! command_exists xcodebuild
+if ! [ -d "/Library/Developer/CommandLineTools" ]
 then
   decho "xcode tools not found... trying to fetch from local server..."
   if validate_url "${local_xcode_link}"
