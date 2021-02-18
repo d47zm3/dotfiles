@@ -9,6 +9,8 @@ readonly module_log_file="${script_dir}/log/${module_name}.log"
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+local_xcode_link="http://basement.d47zm3.me:8192/Command_Line_Tools_for_Xcode_12.4.dmg"
+
 post_brew_cask_apps=(
   "ntfs-3g"
   )
@@ -109,16 +111,34 @@ brew_apps=(
   "osxfuse"
   "wireshark"
   "jsonlint"
+  "google-backup-and-sync"
+  "vagrant-vmware-utility"
+  "istioctl"
+  "git-delta"
   )
-
-brew_taps=(
-  "homebrew/cask-drivers"
-)
 
 decho "initialising ${module_name} module..."
 
 mkdir -p "${script_dir}/log"
 true > "${module_log_file}"
+
+if ! command_exists xcodebuild
+then
+  decho "xcode tools not found... trying to fetch from local server..."
+  if validate_url "${local_xcode_link}"
+  then
+    decho "have access to local xcode tools, fetching & installing..."
+    curl "${local_xcode_link}" --output xcode.dmg
+    hdiutil attach xcode.dmg
+    cd "/Volumes/Command\ Line\ Developer\ Tools"
+    sudo installer -pkg Command\ Line\ Tools.pkg -target "/"
+    detach "/Volumes/Command\ Line\ Developer\ Tools"
+    rm -f xcode.dmg
+  else
+    decho "could find xcode locally & no access to local download... exit!"
+    exit 1
+  fi
+fi
 
 if ! command_exists brew
 then
@@ -127,27 +147,6 @@ then
 else
   decho "brew already installed!"
 fi
-
-decho "installing extra taps..."
-for brew_tap in "${brew_taps[@]}"
-do
-  if ! brew tap | grep -q "${brew_tap}"
-  then
-    if ! brew tap "${brew_tap}" >> "${module_log_file}" 2>&1
-    then
-      decho "[error] brew tap ${brew_tap} returned an error!"
-    fi
-  fi
-done
-
-decho "installing custom taps..."
-for brew_tap in "${brew_taps[@]}"
-do
-  if ! brew install "${brew_tap}" >> "${module_log_file}" 2>&1
-  then
-    decho "[error] brew install ${brew_tap} returned an error!"
-  fi
-done
 
 decho "updating brew modules..."
 if ! brew update >> "${module_log_file}" 2>&1

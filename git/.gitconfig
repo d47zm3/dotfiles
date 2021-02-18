@@ -5,6 +5,7 @@
 [core]
 	editor = vim
 	excludesfile = /Users/d47zm3/.gitignore
+	pager = delta
 [commit]
   forceSignAnnotated = true
 	gpgsign = true
@@ -44,4 +45,14 @@
 	prompt = false
   keepBackup = false
 [alias]
-  set-upstream = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
+	set-upstream = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
+
+	[core]
+
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+
+[interactive]
+    diffFilter = delta --color-only

@@ -97,4 +97,7 @@ brew services start syncthing >> "${module_log_file}" 2>&1
 #decho "tweaking macos settings..."
 #"${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
 
+decho "to get credentials: gcloud auth login"
+decho "configure docker with: gcloud auth configure-docker"
+decho "also: gcloud auth application-default"
 decho "set hostname using scutil: sudo scutil --set HostName <new host name>"

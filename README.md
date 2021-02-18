@@ -2,6 +2,8 @@
 
 Idempotent Setup For MacOS.
 
+*NOTE: REQUIRED XCODE TOOLS INSTALLED (OR HAVE LINK WITH .DMG THAT YOU CAN DOWNLOAD)*
+
 ### Testing
 
 - Install MacOS

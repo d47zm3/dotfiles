@@ -42,7 +42,7 @@ then
   done
 
   decho "installing plugins..."
-  python3 -m pip install jedi pylint
+  python3 -m pip install jedi pylint selenium requests >> "${module_log_file}" 2>&1
   nvim +PlugInstall +qall
 else
   decho "skipping ${module_name} setup... binary not found"
