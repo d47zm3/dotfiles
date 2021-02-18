@@ -127,6 +127,9 @@ then
   decho "xcode tools not found... trying to fetch from local server..."
   if validate_url "${local_xcode_link}"
   then
+    decho "could find xcode locally & no access to local download... exit!"
+    exit 1
+  else
     decho "have access to local xcode tools, fetching & installing..."
     curl "${local_xcode_link}" --output xcode.dmg
     hdiutil attach xcode.dmg
@@ -134,9 +137,6 @@ then
     sudo installer -pkg Command\ Line\ Tools.pkg -target "/"
     detach "/Volumes/Command\ Line\ Developer\ Tools"
     rm -f xcode.dmg
-  else
-    decho "could find xcode locally & no access to local download... exit!"
-    exit 1
   fi
 fi
 
