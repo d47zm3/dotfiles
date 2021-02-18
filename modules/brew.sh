@@ -131,11 +131,11 @@ then
     exit 1
   else
     decho "have access to local xcode tools, fetching & installing..."
-    curl "${local_xcode_link}" --output xcode.dmg
-    hdiutil attach xcode.dmg
-    cd "/Volumes/Command\ Line\ Developer\ Tools"
-    sudo installer -pkg Command\ Line\ Tools.pkg -target "/"
-    detach "/Volumes/Command\ Line\ Developer\ Tools"
+    curl -s "${local_xcode_link}" --output xcode.dmg >> "${module_log_file}" 2>&1
+    hdiutil attach xcode.dmg >> "${module_log_file}" 2>&1
+    cd "/Volumes/Command\ Line\ Developer\ Tools" || exit
+    sudo installer -pkg Command\ Line\ Tools.pkg -target "/" >> "${module_log_file}" 2>&1
+    detach "/Volumes/Command\ Line\ Developer\ Tools" >> "${module_log_file}" 2>&1
     rm -f xcode.dmg
   fi
 fi
