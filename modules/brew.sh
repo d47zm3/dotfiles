@@ -135,7 +135,7 @@ then
     hdiutil attach xcode.dmg >> "${module_log_file}" 2>&1
     cd "/Volumes/Command Line Developer Tools" || exit
     sudo installer -pkg Command\ Line\ Tools.pkg -target "/" >> "${module_log_file}" 2>&1
-    detach "/Volumes/Command Line Developer Tools" >> "${module_log_file}" 2>&1
+    hdiutil detach "/Volumes/Command Line Developer Tools" >> "${module_log_file}" 2>&1
     rm -f xcode.dmg
   fi
 fi
