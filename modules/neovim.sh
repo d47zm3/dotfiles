@@ -7,7 +7,7 @@ script_dir="${1}"
 readonly module_name="neovim"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-config_files=( "init.vim" "coc-settings.json" )
+config_files=( "init.vim" "coc-settings.json" "appearance.vimrc" "coc.vimrc" "fzf.vimrc" "general.vimrc" "gitgutter.vimrc" "init.vimrc" "keys.vimrc" "neomake.vimrc" "nerdtree.vimrc" "other.vimrc" "vim-go.vimrc" "vim-terraform.vimrc")
 config_source_dir="${script_dir}/nvim"
 config_destination_dir="${HOME}/.config/nvim"
 

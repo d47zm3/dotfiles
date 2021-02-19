@@ -47,12 +47,17 @@
 [alias]
 	set-upstream = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
 
-	[core]
-
 [delta]
-    plus-color = "#012800"
-    minus-color = "#340001"
-    syntax-theme = Monokai Extended
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
+
+[delta "decorations"]
+	commit-decoration-style = yellow box ul
+	file-style = yellow ul
+	file-decoration-style = none
