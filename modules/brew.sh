@@ -16,8 +16,8 @@ post_brew_cask_apps=(
   )
 
 brew_apps=(
+  "hashicorp/tap/terraform-ls"
   "yarn"
-  "istioctl"
   "pipenv"
   "dockutil"
   "vault"
@@ -106,7 +106,7 @@ brew_apps=(
   "postman"
   "chromedriver"
   "logitech-options"
-  "logitech-unifying"
+  # "logitech-unifying" not ported to big sur
   "vmware-fusion"
   "osxfuse"
   "wireshark"

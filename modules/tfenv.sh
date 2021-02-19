@@ -16,8 +16,9 @@ if command_exists tfenv
 then
   for version in "${terraform_versions[@]}"
   do
-    if ! tfenv list | grep -q "${version}" >> "${module_log_file}" 2>&1
+    if ! tfenv list 2>/dev/null | grep -q "${version}" >> "${module_log_file}" 2>&1
     then
+      decho "installing terraform in version ${version}..."
       tfenv install "${version}" >> "${module_log_file}" 2>&1
       tfenv use "${version}" >> "${module_log_file}" 2>&1
     fi
