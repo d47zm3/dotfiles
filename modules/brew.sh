@@ -107,12 +107,12 @@ brew_apps=(
   "chromedriver"
   "logitech-options"
   # "logitech-unifying" not ported to big sur
-  "vmware-fusion"
+  #"vmware-fusion"
   "osxfuse"
   "wireshark"
   "jsonlint"
   "google-backup-and-sync"
-  "vagrant-vmware-utility"
+  #"vagrant-vmware-utility"
   "istioctl"
   "git-delta"
   )
