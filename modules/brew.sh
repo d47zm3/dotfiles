@@ -16,6 +16,7 @@ post_brew_cask_apps=(
   )
 
 brew_apps=(
+  "git-secrets"
   "hashicorp/tap/terraform-ls"
   "yarn"
   "pipenv"

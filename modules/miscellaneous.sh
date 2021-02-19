@@ -7,7 +7,7 @@ script_dir="${1}"
 readonly module_name="miscellaneous"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-vagrant_plugins=( "vagrant-vmware-desktop" )
+vagrant_plugins=( "vagrant-vmware-desktop" "vagrant-disksize")
 
 decho "initialising ${module_name} module..."
 true > "${module_log_file}"
@@ -47,20 +47,20 @@ do
   fi
 done
 
-for vagrant_plugin in "${vagrant_plugins[@]}"
-do
-  if ! vagrant plugin list | grep -q "${vagrant_plugin}"
-  then
-    decho "installing plugin ${vagrant_plugin} for vagrant..."
-      if ! vagrant plugin install "${vagrant_plugin}" >> "${module_log_file}" 2>&1
-      then
-      decho "[error] vagrant plugin install ${vagrant_plugin} returned an error!"
-    fi
-  fi
-done
-
-decho "installing license for vagrant: $ vagrant plugin license vagrant-vmware-desktop <license file>"
-
+#for vagrant_plugin in "${vagrant_plugins[@]}"
+#do
+#  if ! vagrant plugin list | grep -q "${vagrant_plugin}"
+#  then
+#    decho "installing plugin ${vagrant_plugin} for vagrant..."
+#      if ! vagrant plugin install "${vagrant_plugin}" >> "${module_log_file}" 2>&1
+#      then
+#      decho "[error] vagrant plugin install ${vagrant_plugin} returned an error!"
+#    fi
+#  fi
+#done
+#
+#decho "installing license for vagrant: $ vagrant plugin license vagrant-vmware-desktop <license file>"
+#
 decho "removing unnecessary icons..."
 # shellcheck disable=SC2129
 dockutil --remove "Launchpad" >> "${module_log_file}" 2>&1
