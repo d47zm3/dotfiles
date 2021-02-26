@@ -7,7 +7,6 @@ script_dir="${1}"
 readonly module_name="miscellaneous"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 
-vagrant_plugins=( "vagrant-vmware-desktop" "vagrant-disksize")
 
 decho "initialising ${module_name} module..."
 true > "${module_log_file}"
@@ -47,20 +46,6 @@ do
   fi
 done
 
-#for vagrant_plugin in "${vagrant_plugins[@]}"
-#do
-#  if ! vagrant plugin list | grep -q "${vagrant_plugin}"
-#  then
-#    decho "installing plugin ${vagrant_plugin} for vagrant..."
-#      if ! vagrant plugin install "${vagrant_plugin}" >> "${module_log_file}" 2>&1
-#      then
-#      decho "[error] vagrant plugin install ${vagrant_plugin} returned an error!"
-#    fi
-#  fi
-#done
-#
-#decho "installing license for vagrant: $ vagrant plugin license vagrant-vmware-desktop <license file>"
-#
 decho "removing unnecessary icons..."
 # shellcheck disable=SC2129
 dockutil --remove "Launchpad" >> "${module_log_file}" 2>&1
@@ -94,12 +79,13 @@ decho "starting syncthing service..."
 brew services start syncthing >> "${module_log_file}" 2>&1
 
 # something weird happeninng...
-#decho "tweaking macos settings..."
+# decho "tweaking macos settings..."
 #"${script_dir}/${module_name}/macosx" >> "${module_log_file}" 2>&1
 
 decho "to get credentials: gcloud auth login"
 decho "configure docker with: gcloud auth configure-docker"
-decho "also: gcloud auth application-default"
+decho "also: gcloud auth application-default login"
 decho "remember to add your private gpg key!"
 decho "remember to add your private ssh key!"
 decho "set hostname using scutil: sudo scutil --set HostName <new host name>"
+decho "for vmware/vagrant setup, use standalone.sh"

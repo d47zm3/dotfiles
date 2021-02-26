@@ -15,6 +15,12 @@ post_brew_cask_apps=(
   "ntfs-3g"
   )
 
+brew_cask_apps=(
+  "docker"
+  "wireshark"
+  "flux"
+)
+
 brew_apps=(
   "git-secrets"
   "hashicorp/tap/terraform-ls"
@@ -95,7 +101,6 @@ brew_apps=(
   "vlc"
   "visual-studio-code"
   "slack"
-  "vagrant"
   "mattermost"
   "burp-suite"
   "1password"
@@ -107,13 +112,9 @@ brew_apps=(
   "postman"
   "chromedriver"
   "logitech-options"
-  # "logitech-unifying" not ported to big sur
-  #"vmware-fusion"
   "osxfuse"
-  "wireshark"
   "jsonlint"
   "google-backup-and-sync"
-  #"vagrant-vmware-utility"
   "istioctl"
   "git-delta"
   )
@@ -171,6 +172,12 @@ decho "installing brew utils..."
 if ! brew install "${brew_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] brew install returned an error!"
+fi
+
+decho "installing brew --cask utils..."
+if ! brew --cask install "${brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
+then
+  decho "[error] brew --cask install returned an error!"
 fi
 
 decho "installing post-brew cask apps..."

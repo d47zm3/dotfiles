@@ -1,4 +1,4 @@
-# MacOS Catalina Edition Setup
+# MacOS Big Sur Edition Setup
 
 Idempotent Setup For MacOS.
 
