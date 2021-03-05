@@ -24,6 +24,7 @@ brew_cask_apps=(
 brew_apps=(
   "git-secrets"
   "hashicorp/tap/terraform-ls"
+  "exa"
   "yarn"
   "pipenv"
   "dockutil"
