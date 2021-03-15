@@ -46,6 +46,14 @@ do
   fi
 done
 
+decho "mark chromedriver as safe"
+cwd_dir=$(pwd)
+src_dir=$(dirname $( which chromedriver))
+
+cd "${src_dir}" || decho "chromedriver not found!"
+xattr -d com.apple.quarantine chromedriver
+cd "${cwd_dir}" || exit 1
+
 decho "removing unnecessary icons..."
 # shellcheck disable=SC2129
 dockutil --remove "Launchpad" >> "${module_log_file}" 2>&1

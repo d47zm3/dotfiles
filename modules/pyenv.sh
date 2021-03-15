@@ -27,3 +27,7 @@ then
 else
   decho "skipping ${module_name} setup... binary not found"
 fi
+
+decho "installing some common modules..."
+python3 -m pip install --upgrade pip
+pip3 install pytest selenium requests
