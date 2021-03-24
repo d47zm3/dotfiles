@@ -19,6 +19,7 @@ brew_cask_apps=(
   "docker"
   "wireshark"
   "flux"
+  "microsoft-teams"
 )
 
 brew_apps=(
