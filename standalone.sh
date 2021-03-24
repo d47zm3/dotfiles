@@ -5,7 +5,6 @@ source /dev/stdin <<<"$( curl -sS https://raw.githubusercontent.com/d47zm3/bash-
 
 readonly script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-script_dir="${1}"
 readonly module_name="standalone"
 readonly module_log_file="${script_dir}/log/${module_name}.log"
 decho "initialising ${module_name} module..."
@@ -36,12 +35,12 @@ brew_apps=(
 )
 
 # download and install older vmware-fusion, until there is license for new version
-curl -O vmware-fusion.rb "${local_vmware_link}"
+curl -0 -o vmware-fusion.rb "${local_vmware_link}"
 brew install --cask ./vmware-fusion.rb
 rm -f vmware-fusion.rb
 
 decho "installing stadalone brew --cask utils..."
-if ! brew --cask install "${brew_apps[@]}" >> "${module_log_file}" 2>&1
+if ! brew install --cask "${brew_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] brew --cask install returned an error!"
 fi
