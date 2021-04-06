@@ -23,6 +23,11 @@ brew_cask_apps=(
 )
 
 brew_apps=(
+  "terraform-docs"
+  "terragrunt"
+  "tfsec"
+  "tflint"
+  "pre-commit"
   "git-secrets"
   "hashicorp/tap/terraform-ls"
   "exa"
