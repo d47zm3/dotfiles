@@ -69,6 +69,19 @@ ZSH_DISABLE_COMPFIX=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git command-not-found colored-man-pages cp gpg-agent ssh-agent tmux gitignore golang npm python osx zsh-autosuggestions zsh-syntax-highlighting zsh-completions history-substring-search docker terraform)
 
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
+
 source $ZSH/oh-my-zsh.sh
 
 source ~/.zshrc.extra
