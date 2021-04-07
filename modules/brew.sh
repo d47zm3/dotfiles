@@ -23,6 +23,7 @@ brew_cask_apps=(
 )
 
 brew_apps=(
+  "checkov"
   "terraform-docs"
   "terragrunt"
   "tfsec"
