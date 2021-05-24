@@ -13,6 +13,8 @@ set number
 set ruler
 " Set Tabs/Shift
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+" YAML Settings
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Auto Indent
  filetype plugin indent on
 " Don't Wrap Lines

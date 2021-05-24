@@ -18,8 +18,9 @@
       "filetypes": ["go"]
     }
   },
+  /*
   "yaml.schemas": {
       "kubernetes": "/*.yaml"
-  },
+  },*/
   "python.autoComplete.addBrackets": true
 }

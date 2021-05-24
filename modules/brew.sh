@@ -128,6 +128,7 @@ brew_apps=(
   "google-backup-and-sync"
   "istioctl"
   "git-delta"
+  "glow"
   )
 
 decho "initialising ${module_name} module..."

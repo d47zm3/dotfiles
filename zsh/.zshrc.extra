@@ -9,8 +9,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LS_COLORS=$LS_COLORS:'di=0;33:'
 export GOPATH=$HOME/Projects/Personal/go
-export PATH="$PATH:/usr/local/sbin/:$GOPATH/bin"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH:$GOPATH/bin"
 export VAGRANT_VMWARE_CLONE_DIRECTORY="/Users/d47zm3/Virtual Machines.localized"
 
 # aliases
@@ -26,6 +25,7 @@ alias g='git'
 alias gs='git status'
 
 alias tf='terraform'
+alias tg='terragrunt'
 alias tfv='terraform validate'
 alias tff='terraform fmt -recursive'
 alias tfp='terraform plan'
@@ -34,7 +34,6 @@ alias tfaa='terraform apply -auto-approve'
 alias tfd='terraform destroy'
 
 alias expl0="ssh -p 2879 expl0it.d47zm3.me"
-alias basement="ssh basement.d47zm3.me"
 
 # autocompletion
 
@@ -138,4 +137,19 @@ if [ -f '/Users/d47zm3/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/d47zm3/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/d47zm3/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d47zm3/google-cloud-sdk/completion.zsh.inc'; fi
 
+# stop autocorrect
 unsetopt correct_all
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Terraform Plugin Cache
+
+if [[ ! -d "$HOME/.terraform.d/plugin-cache" ]]
+then
+  mkdir -p "$HOME/.terraform.d/plugin-cache"
+fi
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"

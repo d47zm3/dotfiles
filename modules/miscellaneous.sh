@@ -54,6 +54,19 @@ cd "${src_dir}" || decho "chromedriver not found!"
 xattr -d com.apple.quarantine chromedriver
 cd "${cwd_dir}" || exit 1
 
+decho "install krew, kubectl addon"
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+  tar zxvf krew.tar.gz &&
+  KREW=./krew-"${OS}_${ARCH}" &&
+  "$KREW" install krew
+)
+decho "install krew plugins"
+kubectl krew install advise-psp kubesec-scan
+
 decho "removing unnecessary icons..."
 # shellcheck disable=SC2129
 dockutil --remove "Launchpad" >> "${module_log_file}" 2>&1
@@ -85,6 +98,9 @@ cp "${script_dir}/${module_name}/Profiles.json" "$HOME/Library/Application Suppo
 
 decho "starting syncthing service..."
 brew services start syncthing >> "${module_log_file}" 2>&1
+
+decho "installing helm plugins..."
+helm plugin install https://github.com/databus23/helm-diff
 
 # something weird happeninng...
 # decho "tweaking macos settings..."

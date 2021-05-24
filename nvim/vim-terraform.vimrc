@@ -4,3 +4,5 @@ let g:terraform_align=1
 let g:terraform_fold_sections=1
 " Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
 let g:terraform_fmt_on_save=1
+" Fix HCL files as well
+au! BufNewFile,BufRead terragrunt.hcl set filetype=terraform syntax=terraform

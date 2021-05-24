@@ -73,6 +73,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
+Plug 'rhadley-recurly/vim-terragrunt'
 
 call plug#end()
 

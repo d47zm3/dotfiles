@@ -21,7 +21,7 @@ vcs_status() {
     fi
 }
 
-LOCAL_ADDRESS="$(curl -s ifconfig.co)"
+LOCAL_ADDRESS="$(curl -s ident.me)"
 
 if [[ "$LOCAL_ADDRESS" == "213.241.3.97" ]]
 then
