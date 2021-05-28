@@ -198,4 +198,10 @@ then
   decho "[error] post-brew cask install returned an error!"
 fi
 
+decho "extra care for terraform using tfenv..."
+brew uninstall terraform
+brew install tfenv terragrunt --ignore-dependencies
+tfenv install 0.15.4
+tfenv use 0.15.4
+
 "$(brew --prefix)/opt/fzf/install" "--all" >> "${module_log_file}" 2>&1
