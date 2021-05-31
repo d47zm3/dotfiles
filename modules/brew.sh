@@ -68,7 +68,6 @@ brew_apps=(
   "tree"
   "ansible"
   "ansifilter"
-  "tfenv"
   "kubectl"
   "nmap"
   "geoip"
@@ -95,7 +94,6 @@ brew_apps=(
   "tmux-mem-cpu-load"
   "yamllint"
   "dive"
-  "terraformer"
   "mas"
   "geckodriver"
   "syncthing"
@@ -199,7 +197,6 @@ then
 fi
 
 decho "extra care for terraform using tfenv..."
-brew uninstall terraform
 brew install tfenv terragrunt --ignore-dependencies
 tfenv install 0.15.4
 tfenv use 0.15.4
