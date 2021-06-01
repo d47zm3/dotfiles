@@ -1,7 +1,7 @@
 [user]
 	name = Damian Tykalowski
-	email = github@d47zm3.me
-	signingkey = DD1D600D4228ED66
+	email = damian@d47zm3.me
+	signingkey = 6E2FA20D3761173C
 [core]
 	editor = vim
 	excludesfile = /Users/d47zm3/.gitignore
