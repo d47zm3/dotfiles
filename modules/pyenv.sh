@@ -29,5 +29,5 @@ else
 fi
 
 decho "installing some common modules..."
-python3 -m pip install --upgrade pip
-pip3 install pytest selenium requests
+python3 -m pip install --upgrade pip >> "${module_log_file}" 2>&1
+pip3 install pytest selenium requests >> "${module_log_file}" 2>&1

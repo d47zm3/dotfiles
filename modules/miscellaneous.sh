@@ -46,12 +46,21 @@ do
   fi
 done
 
+# disable error check cause of grep
+set +e
 decho "mark chromedriver as safe"
 cwd_dir=$(pwd)
 src_dir=$(dirname $( which chromedriver))
 
 cd "${src_dir}" || decho "chromedriver not found!"
-xattr -d com.apple.quarantine chromedriver
+xattr -p chromedriver | grep -i -q com.apple.quarantine
+if [[ ${?} -eq 0 ]]
+then
+  decho "remove quarantine attribute on chromedriver..."
+  xattr -d com.apple.quarantine chromedriver
+fi
+set -e
+
 cd "${cwd_dir}" || exit 1
 
 decho "install krew, kubectl addon"
@@ -63,9 +72,9 @@ decho "install krew, kubectl addon"
   tar zxvf krew.tar.gz &&
   KREW=./krew-"${OS}_${ARCH}" &&
   "$KREW" install krew
-)
+) >> "${module_log_file}" 2>&1
 decho "install krew plugins"
-kubectl krew install advise-psp kubesec-scan
+kubectl krew install advise-psp kubesec-scan >> "${module_log_file}" 2>&1
 
 decho "removing unnecessary icons..."
 # shellcheck disable=SC2129
@@ -100,7 +109,9 @@ decho "starting syncthing service..."
 brew services start syncthing >> "${module_log_file}" 2>&1
 
 decho "installing helm plugins..."
-helm plugin install https://github.com/databus23/helm-diff
+set +e
+helm plugin install https://github.com/databus23/helm-diff >> "${module_log_file}" 2>&1
+set -e
 
 # something weird happeninng...
 # decho "tweaking macos settings..."

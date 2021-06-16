@@ -34,13 +34,8 @@ brew_apps=(
   "vagrant-vmware-utility"
 )
 
-# download and install older vmware-fusion, until there is license for new version
-curl -0 -o vmware-fusion.rb "${local_vmware_link}"
-brew install --cask ./vmware-fusion.rb
-rm -f vmware-fusion.rb
-
 decho "installing stadalone brew --cask utils..."
-if ! brew install --cask "${brew_apps[@]}" >> "${module_log_file}" 2>&1
+if ! brew --cask install "${brew_apps[@]}" >> "${module_log_file}" 2>&1
 then
   decho "[error] brew --cask install returned an error!"
 fi

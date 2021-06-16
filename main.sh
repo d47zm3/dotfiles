@@ -38,6 +38,7 @@ done
 
 decho "cleanup..."
 brew cleanup &> /dev/null
+
 sudo spctl --master-enable
 
 decho "finished!"

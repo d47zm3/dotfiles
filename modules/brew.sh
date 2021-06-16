@@ -11,10 +11,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 local_xcode_link="http://basement.d47zm3.me:8192/Command_Line_Tools_for_Xcode_12.4.dmg"
 
-post_brew_cask_apps=(
-  "ntfs-3g"
-  )
-
 brew_cask_apps=(
   "docker"
   "wireshark"
@@ -23,6 +19,8 @@ brew_cask_apps=(
 )
 
 brew_apps=(
+  "kruc/homebrew-tap/clockify-to-jira"
+  "clockify"
   "checkov"
   "terraform-docs"
   "terragrunt"
@@ -86,7 +84,6 @@ brew_apps=(
   "gnu-sed"
   "minisign"
   "hugo"
-  "docker"
   "dep"
   "hadolint"
   "bat"
@@ -185,20 +182,11 @@ then
 fi
 
 decho "installing brew --cask utils..."
-if ! brew --cask install "${brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
+if ! brew install --cask "${brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
 then
-  decho "[error] brew --cask install returned an error!"
-fi
-
-decho "installing post-brew cask apps..."
-if ! brew install "${post_brew_cask_apps[@]}" >> "${module_log_file}" 2>&1
-then
-  decho "[error] post-brew cask install returned an error!"
+  decho "[error] brew install --cask returned an error!"
 fi
 
 decho "extra care for terraform using tfenv..."
-brew install tfenv terragrunt --ignore-dependencies
-tfenv install 0.15.4
-tfenv use 0.15.4
-
+brew install tfenv terragrunt --ignore-dependencies >> "${module_log_file}" 2>&1
 "$(brew --prefix)/opt/fzf/install" "--all" >> "${module_log_file}" 2>&1
