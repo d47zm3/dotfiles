@@ -21,11 +21,4 @@ vcs_status() {
     fi
 }
 
-LOCAL_ADDRESS="$(curl -s ident.me)"
-
-if [[ "$LOCAL_ADDRESS" == "213.241.3.97" ]]
-then
-  PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}w0rk%{$reset_color%}~] $(vcs_status)%{$fg[magenta]%}$(virtualenv_prompt_info)%{$reset_color%}»%b '
-else
-  PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)%{$fg[magenta]%}$(virtualenv_prompt_info)%{$reset_color%}»%b '
-fi
+PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)%{$fg[magenta]%}$(virtualenv_prompt_info)$(tf_prompt_info)%{$reset_color%} » %b '
