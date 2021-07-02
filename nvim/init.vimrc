@@ -36,6 +36,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release' , 'do': { -> coc#util#install() }
 " Neomake
 Plug 'neomake/neomake'
 
+" EditorConfig
+Plug 'editorconfig/editorconfig-vim'
+
 " Colorschemes
 Plug 'fatih/molokai'
 Plug 'joshdick/onedark.vim'
