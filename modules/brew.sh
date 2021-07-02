@@ -16,10 +16,11 @@ brew_cask_apps=(
   "wireshark"
   "flux"
   "microsoft-teams"
+  "google-drive"
 )
 
 brew_apps=(
-  "kruc/homebrew-tap/clockify-to-jira"
+  "install go-task/tap/go-task"
   "clockify"
   "checkov"
   "terraform-docs"
@@ -120,7 +121,6 @@ brew_apps=(
   "logitech-options"
   "osxfuse"
   "jsonlint"
-  "google-backup-and-sync"
   "istioctl"
   "git-delta"
   "glow"

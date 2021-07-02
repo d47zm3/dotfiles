@@ -21,4 +21,4 @@ vcs_status() {
     fi
 }
 
-PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~] $(vcs_status)%{$fg[magenta]%}$(virtualenv_prompt_info)$(tf_prompt_info)%{$reset_color%} » %b '
+PROMPT='%* %2~ [~d47zm3@%{$fg[green]%}h0me%{$reset_color%}~]$(vcs_status)%{$fg[magenta]%}$(virtualenv_prompt_info)$(tf_prompt_info)%{$reset_color%}»%b '

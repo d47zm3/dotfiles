@@ -53,6 +53,10 @@ eval "$(pyenv init --path)"
 
 eval "$(pyenv init -)"
 
+# direnv
+#
+eval "$(direnv hook zsh)"
+
 # custom functions
 
 function tmux-start {
